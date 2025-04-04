@@ -1,6 +1,8 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+const loader = document.querySelector('.loader');
 
+export const containerGallery = document.querySelector('.gallery');
 export function createGallery(images) {
   return images
     .map(
@@ -33,4 +35,24 @@ export function createGallery(images) {
                 </li>`
     )
     .join('');
+}
+
+export function clearGallery() {
+  containerGallery.innerHTML = '';
+}
+
+export function showLoader() {
+  loader.classList.add('hidden');
+}
+
+export function hideLoader() {
+  loader.classList.remove('hidden');
+}
+export function setLightbox() {
+  const gallery = new SimpleLightbox('.gallery a', {
+    navText: ['<', '>'],
+    captionsData: 'alt',
+    captionDelay: '250',
+  });
+  gallery.refresh();
 }
